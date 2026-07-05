@@ -1,1 +1,21 @@
+/* css/index.css */
+body {
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
 
+nav {
+    background: #1e1e1e;
+    padding: 15px;
+}
+
+.btn-main {
+    background-color: #4CAF50;
+    border: none;
+    padding: 12px 24px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
