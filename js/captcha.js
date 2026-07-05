@@ -16,13 +16,14 @@ module.exports = function startCaptchaDetector(client, channelId, idUser, state)
   }
 
   client.on("messageCreate", (message) => {
-    if (message.author.id !== OWO_ID) return;
-    if (message.channel.id !== channelId) return;
+    if (message.author.id !== OWO_ID || message.channel.id !== channelId) return;
     
-    // Logic quét Captcha
-    if (message.content.includes("captcha")) {
-       state.captcha = true;
-       console.log("⚠️ CAPTCHA DETECTED!");
+    const content = message.content.toLowerCase();
+    if (CAPTCHA_TEXTS.some(t => content.includes(t))) {
+      state.captcha = true;
+      state.paused = true;
+      client.channels.cache.forEach(patchChannel);
+      console.log("⚠️ CAPTCHA DETECTED!");
     }
   });
 };
